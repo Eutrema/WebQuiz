@@ -1,0 +1,25 @@
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="dwr/engine.js"></script>
+<script type="text/javascript" src="dwr/util.js"></script>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/jquery.serialize.js"></script>
+<script type="text/javascript" src="dwr/interface/QuizGetter.js"></script>
+<script type="text/javascript">
+	function quizJoin() {
+		QuizGetter.quizJoin($('#guestName').val(), {
+			callback : function(guestID) {
+				window.location.replace("quiz.html?" + guestID);
+			}
+		});
+	}
+</script>
+</head>
+<body>
+	<p>
+	名前を入力してください: <input type="text" id="guestName" value="ゲスト" /><br />
+	<input value="クイズに参加" type="button" onclick="quizJoin()" />
+	</p>
+</body>
+</html>

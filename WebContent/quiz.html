@@ -1,0 +1,54 @@
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="dwr/engine.js"></script>
+<script type="text/javascript" src="dwr/util.js"></script>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/jquery.serialize.js"></script>
+<script type="text/javascript" src="dwr/interface/QuizGetter.js"></script>
+<script type="text/javascript">
+	var guestID = 0;
+	if (window.location.search) {
+        guestID = unescape(window.location.search.substring(1, window.location.search.length));
+	}
+	var deadline = 0;
+	var quizID = 0;
+	function getCurrentQuiz() {
+		QuizGetter.getCurrentQuiz(guestID,
+		{
+			callback : function(data) {
+				$('#quizString').html(data[0]);
+				deadline = parseInt( data[1] / 1000 );
+				$('#remainingTime').text(deadline - parseInt( new Date() / 1000 ));
+				setInterval(refreshTime, 1000);
+			}
+		});
+	}
+	function refreshTime() {
+		var remain = deadline - parseInt( new Date() / 1000 );
+		$('#remainingTime').text(remain);
+		if (remain <= 0) {
+			window.location.replace("answer.html?" + escape(guestID));
+		}
+
+	}
+	function changeAnswer(answer) {
+		QuizGetter.changeGuestAnswer({guestID, answer});
+	}
+</script>
+</head>
+<body>
+	<div id="quizArea">
+	問題<br>
+	<span id="quizString"></span><br>
+	残り時間：<span id="remainingTime"></span>秒<br>
+	</div>
+	<br>
+	<input value="○" id="maru" type="button" onclick="changeAnswer(1);$('#maru').attr('disabled', true);$('#batu').attr('disabled', false);" />
+	<input value="×" id="batu" type="button" onclick="changeAnswer(0);$('#batu').attr('disabled', true);$('#maru').attr('disabled', false);" />
+</body>
+
+<script type="text/javascript">
+	(function(){getCurrentQuiz();})();
+</script>
+</html>
