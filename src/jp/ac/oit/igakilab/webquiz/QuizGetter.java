@@ -26,6 +26,26 @@ public class QuizGetter {
 		return list;
 	}
 
+	public List<QuizData> getCurrentQuizList() {
+		List<QuizData> list = new ArrayList<QuizData>();
+		DBController dbc = new DBController();
+		dbc.beginTransaction();
+		String[] currentQuiz = dbc.doGet("SELECT currentQuizID FROM currentquiz");
+		for (String current : currentQuiz) {
+			QuizData quiz = new QuizData();
+			quiz.setquizID(Integer.valueOf(current));
+			quiz.setquizOwnerName(dbc.doGet("SELECT quizOwnerName FROM quizowner NATURAL JOIN currentquiz"
+										     + " WHERE currentQuizID = " + current)[0]);
+			quiz.setquizAnswerNumber(dbc.doGet("SELECT guestAnswerID FROM guestanswer NATURAL JOIN currentquiz"
+												+ " WHERE currentQuizID = " + current).length);
+			int qs = Integer.parseInt(dbc.doGet("SELECT quizState FROM currentquiz WHERE currentQuizID = " + current)[0]);
+			quiz.setisFinished(qs == 1);
+			list.add(quiz);
+		}
+		dbc.endTransaction();
+		return list;
+	}
+
 	public int quizJoin(String name) {
 		DBController dr = new DBController();
 		dr.beginTransaction();

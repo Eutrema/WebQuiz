@@ -1,0 +1,63 @@
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="dwr/engine.js"></script>
+<script type="text/javascript" src="dwr/util.js"></script>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/jquery.serialize.js"></script>
+<script type="text/javascript" src="dwr/interface/QuizGetter.js"></script>
+<script type="text/javascript">
+	function getCurrentQuizList() {
+		QuizGetter.getCurrentQuizList(
+		{
+			callback : function(data) {
+				var text = "<table>";
+				for (var i = 0; i < data.length; ++i) {
+					text += "<tr>";
+					text += "<td>";
+					text += "<a href='quizview.html?" + data[i].quizID + "'>";
+					if (data[i].isFinished) {
+						text += "出題終了";
+					} else {
+						text += "出題中";
+					}
+					text += "</a>";
+					text += "</td>";
+					text += "<td>";
+					text += "クイズID: ";
+					text += data[i].quizID;
+					text += "</td>";
+					text += "<td>";
+					text += "出題者: ";
+					text += data[i].quizOwnerName;
+					text += "</td>";
+					text += "<td>";
+					text += "只今の回答者: ";
+					text += data[i].quizAnswerNumber;
+					text += "人";
+					text += "</td>";
+					text += "</tr>\n";
+				}
+				if (text == "<table>") {
+					text += "閲覧可能なクイズがありません";
+				}
+				text += "\n</table>";
+				$('#quizListArea').html(text);
+				setInterval(getCurrentQuizList, 30000);
+			}
+		});
+	}
+</script>
+</head>
+<body>
+	<div id="quizListArea">
+	</div>
+	<br>
+	<input value="メニューに戻る" type="button"
+		onclick="window.location.href ='menu.html'" />
+</body>
+
+<script type="text/javascript">
+	getCurrentQuizList();
+</script>
+</html>
