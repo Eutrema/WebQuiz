@@ -64,7 +64,7 @@ public class QuizGetter {
 		sb.append(name);
 		sb.append("', '");
 		sb.append(quizID);
-		sb.append("', '-1')");
+		sb.append("', '0')");
 		dr.doUpdate(sb.toString());
 		dr.endTransaction();
 		return guestID;
@@ -84,12 +84,12 @@ public class QuizGetter {
 		list.add(answerConvert(guestans));
 		int ans = Integer.parseInt(dr.doGet("SELECT quizAnswer FROM quiz WHERE quizID = " + quizID)[0]);
 		list.add(answerConvert(ans));
-		if (guestans != -1) {
+		if (guestans > 0) {
 			dr.doUpdate("UPDATE quiz SET answers = answers + 1 WHERE quizID = " + quizID);
 			if (guestans == ans) {
 				dr.doUpdate("UPDATE quiz SET corrects = corrects + 1 WHERE quizID = " + quizID);
 			}
-			dr.doUpdate("UPDATE guestanswer SET answer = -1 WHERE guestAnswerID = " + guestAnswerID);
+			dr.doUpdate("UPDATE guestanswer SET answer = -answer WHERE guestAnswerID = " + guestAnswerID);
 		}
 		int corrects = Integer.parseInt(dr.doGet("SELECT corrects FROM quiz WHERE quizID = " + quizID)[0]);
 		int answers = Integer.parseInt(dr.doGet("SELECT answers FROM quiz WHERE quizID = " + quizID)[0]);
@@ -103,22 +103,46 @@ public class QuizGetter {
 		return list;
 	}
 
+	//○や×のところに語群を入れられるようにする
 	private String answerConvert(int ans) {
 		String str;
-		if (ans == 0) {
-			str = "×";
-		} else if (ans == 1) {
+		ans = Math.abs(ans);
+		if (ans == 1) {
 			str = "○";
+		} else if (ans == 2) {
+			str = "×";
 		} else {
-			str = "－";
+			str = "未回答";
 		}
 		return str;
 	}
 
-	public void changeGuestAnswer(GuestAnswerData ans) {
+	public void changeGuestAnswer(AnswerChangeRequest ans) {
 		DBController dr = new DBController();
 		int id = ans.getguestID();
 		int answer = ans.getanswer();
 		dr.doUpdate("UPDATE guestanswer SET answer = " + answer + " WHERE guestAnswerID = " + id);
+	}
+
+	public List<GuestAnswerData> getGuestAnswersData(int currentQuizID) {
+		List<GuestAnswerData> data = new ArrayList<GuestAnswerData>();
+		DBController dbc = new DBController();
+		dbc.beginTransaction();
+		String[] str = dbc.doGet("SELECT guestAnswerID, guestName, answer "
+								+ "FROM guestanswer NATURAL JOIN currentquiz "
+								+ "WHERE currentQuizID = " + currentQuizID);
+		for (int i = 0; i < str.length; i += 3) {
+			GuestAnswerData gad = new GuestAnswerData();
+			gad.setguestID(Integer.parseInt(str[i]));
+			gad.setguestName(str[i+1]);
+			gad.setanswer(answerConvert(Integer.parseInt(str[i+2])));
+			data.add(gad);
+		}
+		dbc.endTransaction();
+		return data;
+	}
+	public String getDeadline(int currentQuizID) {
+		DBController dr = new DBController();
+		return dr.doGet("SELECT quizDeadline FROM currentquiz WHERE currentQuizID = " + currentQuizID)[0];
 	}
 }

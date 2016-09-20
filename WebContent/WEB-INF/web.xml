@@ -18,6 +18,11 @@
 			<param-name>jsonpEnabled</param-name>
 			<param-value>true</param-value>
 		</init-param>
+		<!-- Reverse Ajaxに手を出そうとしたなごり
+		<init-param>
+			<param-name>activeReverseAjaxEnabled</param-name>
+			<param-value>true</param-value>
+		</init-param> -->
 	</servlet>
 	<servlet>
 		<servlet-name>quizChanger</servlet-name>
