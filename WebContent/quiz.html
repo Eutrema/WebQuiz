@@ -45,10 +45,11 @@
 	</div>
 	<br>
 	<input type="image" src="img/maru.png" id="maru"  onclick="changeAnswer(1);$('#maru').attr('disabled', true);$('#batu').attr('disabled', false);$('#maru').attr('src', 'img/cmaru.png');$('#batu').attr('src', 'img/batu.png');" />
-	<input type="image" src="img/batu.png" id="batu" onclick="changeAnswer(0);$('#batu').attr('disabled', true);$('#maru').attr('disabled', false);$('#batu').attr('src', 'img/cbatu.png');$('#maru').attr('src', 'img/maru.png');" />
+	<input type="image" src="img/batu.png" id="batu" onclick="changeAnswer(2);$('#batu').attr('disabled', true);$('#maru').attr('disabled', false);$('#batu').attr('src', 'img/cbatu.png');$('#maru').attr('src', 'img/maru.png');" />
+
 </body>
 
 <script type="text/javascript">
-	(function(){getCurrentQuiz();})();
+	getCurrentQuiz();
 </script>
 </html>

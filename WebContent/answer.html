@@ -25,7 +25,7 @@
 						$('#quizComment').text("不正解…");
 					}
 				}
-				$('#correctPercent').text("この問題の正答率: "+data[3]);
+				$('#correctPercent').text("この問題の正答率: " + data[3]);
 			}
 		});
 	}
@@ -41,15 +41,11 @@
 		<span id="correctPercent"></span><br>
 	</div>
 	<br>
-<!-- 	<input value="メニューに戻る" type="button" -->
-<!-- 		onclick="window.location.replace('menu.html')" /> -->
 	<a onclick="window.location.replace('menu.html')"><img src="img/backmenu.png"></a>
 
 </body>
 
 <script type="text/javascript">
-	(function() {
-		sendQuizFinish();
-	})();
+	sendQuizFinish();
 </script>
 </html>
