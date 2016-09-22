@@ -45,10 +45,10 @@
 	</div>
 	<br>
 	<input value="○" id="maru" type="button" onclick="changeAnswer(1);$('#maru').attr('disabled', true);$('#batu').attr('disabled', false);" />
-	<input value="×" id="batu" type="button" onclick="changeAnswer(0);$('#batu').attr('disabled', true);$('#maru').attr('disabled', false);" />
+	<input value="×" id="batu" type="button" onclick="changeAnswer(2);$('#batu').attr('disabled', true);$('#maru').attr('disabled', false);" />
 </body>
 
 <script type="text/javascript">
-	(function(){getCurrentQuiz();})();
+	getCurrentQuiz();
 </script>
 </html>
