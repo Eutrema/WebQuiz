@@ -1,0 +1,51 @@
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="dwr/engine.js"></script>
+<script type="text/javascript" src="dwr/util.js"></script>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/jquery.serialize.js"></script>
+<script type="text/javascript" src="dwr/interface/QuizGetter.js"></script>
+<script type="text/javascript">
+	var guestID = 0;
+	if (window.location.search) {
+		guestID = unescape(window.location.search.substring(1,
+				window.location.search.length));
+	}
+	function sendQuizFinish2() {
+		QuizGetter.quizFinish2(guestID, {
+			callback : function(data) {
+				$('#quizString').html(data[0]);
+				$('#yourAnswer').text(data[1]);
+				$('#quizAnswer').text(data[2]);
+				if (data[1] != "－") {
+					if (data[1] == data[2]) {
+						$('#quizComment').text("正解！");
+					} else {
+						$('#quizComment').text("不正解…");
+					}
+				}
+				$('#correctPercent').text("この問題の正答率: " + data[3]);
+			}
+		});
+	}
+</script>
+</head>
+<body>
+	<div id="quizArea">
+		問題<br>
+		<span id="quizString"></span><br>
+		あなたの解答: <span id="yourAnswer"></span><br>
+		クイズの答え: <span id="quizAnswer"></span><br>
+		<span id="quizComment"></span><br>
+		<span id="correctPercent"></span><br>
+	</div>
+	<br>
+	<input value="メニューに戻る" type="button"
+		onclick="window.location.replace('menu.html')" />
+</body>
+
+<script type="text/javascript">
+	sendQuizFinish2();
+</script>
+</html>

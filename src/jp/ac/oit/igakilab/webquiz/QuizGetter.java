@@ -26,6 +26,26 @@ public class QuizGetter {
 		return list;
 	}
 
+	public List<String> getCurrentQuiz2(int guestAnswerID) {
+		List<String> list2 = new ArrayList<String>();
+		DBController dr = new DBController();
+		dr.beginTransaction();
+		list2.add(dr
+				.doGet("SELECT quizString FROM guestanswer NATURAL JOIN currentquiz NATURAL JOIN quiz4select WHERE guestAnswerID = "
+						+ guestAnswerID)[0]);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy'-'MM'-'dd' 'HH':'mm':'ss");
+		try {
+			list2.add(String.valueOf(sdf.parse(
+					dr.doGet("SELECT quizDeadline FROM guestanswer NATURAL JOIN currentquiz WHERE guestAnswerID = "
+							+ guestAnswerID)[0])
+					.getTime()));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		dr.endTransaction();
+		return list2;
+	}
+
 	public List<QuizData> getCurrentQuizList() {
 		List<QuizData> list = new ArrayList<QuizData>();
 		DBController dbc = new DBController();
@@ -102,6 +122,37 @@ public class QuizGetter {
 		dr.endTransaction();
 		return list;
 	}
+	public List<String> quizFinish2(int guestAnswerID) {
+		List<String> list2 = new ArrayList<String>();
+		DBController dr = new DBController();
+		dr.beginTransaction();
+		int quizID = Integer.parseInt(dr
+				.doGet("SELECT quizID FROM guestanswer NATURAL JOIN currentquiz NATURAL JOIN quiz4select  WHERE guestAnswerID = "
+						+ guestAnswerID)[0]);
+		list2.add(dr.doGet("SELECT quizString FROM quiz4select WHERE quizID = " + quizID)[0]);
+		int guestans = Integer
+				.parseInt(dr.doGet("SELECT answer FROM guestanswer WHERE guestAnswerID = " + guestAnswerID)[0]);
+		list2.add(answerConvert2(guestans));
+		int ans = Integer.parseInt(dr.doGet("SELECT quizAnswer FROM quiz4select WHERE quizID = " + quizID)[0]);
+		list2.add(answerConvert2(ans));
+		if (guestans > 0) {
+			dr.doUpdate("UPDATE quiz4select SET answers = answers + 1 WHERE quizID = " + quizID);
+			if (guestans == ans) {
+				dr.doUpdate("UPDATE quiz4select SET corrects = corrects + 1 WHERE quizID = " + quizID);
+			}
+			dr.doUpdate("UPDATE guestanswer SET answer = -answer WHERE guestAnswerID = " + guestAnswerID);
+		}
+		int corrects = Integer.parseInt(dr.doGet("SELECT corrects FROM quiz4select WHERE quizID = " + quizID)[0]);
+		int answers = Integer.parseInt(dr.doGet("SELECT answers FROM quiz4select WHERE quizID = " + quizID)[0]);
+		if (answers == 0) {
+			list2.add("0%");
+		} else {
+			list2.add(String.valueOf((int) (corrects * 100.0 / answers)) + "%");
+		}
+
+		dr.endTransaction();
+		return list2;
+	}
 
 	//○や×のところに語群を入れられるようにする
 	private String answerConvert(int ans) {
@@ -112,6 +163,25 @@ public class QuizGetter {
 		} else if (ans == 2) {
 			str = "×";
 		} else {
+			str = "未回答";
+		}
+		return str;
+	}
+
+	private String answerConvert2(int ans) {
+		String str;
+		ans = Math.abs(ans);
+		if (ans == 1) {
+			str = "1";
+		} else if (ans == 2) {
+			str = "2";
+		} else if (ans == 3) {
+			str = "3";
+		}
+		 else if (ans == 4) {
+				str = "4";
+			}
+		else {
 			str = "未回答";
 		}
 		return str;

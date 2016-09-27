@@ -10,7 +10,15 @@
 	function quizJoin() {
 		QuizGetter.quizJoin($('#guestName').val(), {
 			callback : function(guestID) {
-				window.location.replace("menu2.html?" + guestID);
+				window.location.replace("quiz.html?" + guestID);
+			}
+		});
+	}
+
+	function quizJoin2() {
+		QuizGetter.quizJoin($('#guestName').val(), {
+			callback : function(guestID) {
+				window.location.replace("quiz2.html?" + guestID);
 			}
 		});
 	}
@@ -18,13 +26,11 @@
 </head>
 <body>
 	<p>
-	名前を入力してください: <input type="text" id="guestName" value="ゲスト" /><br />
-	<input value="クイズに参加" type="button" onclick="quizJoin()" />
-	<br />
-	<br />
-	<br />
-	<input value="回答状況をみる" type="button"
-		onclick="window.location.href ='quizlist.html'" />
+	問題を選択してください。<br />
+	<input value="○×クイズ" type="button" onclick="quizJoin()" />
+
+	<input value="4択クイズ" type="button"
+		onclick="quizJoin2()" />
 	</p>
 </body>
 </html>
