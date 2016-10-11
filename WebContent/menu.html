@@ -16,15 +16,28 @@
 	}
 </script>
 </head>
+<style type="text/css">
+.typetext{
+font-size:20pt;
+width:10em;
+height:1.5em;
+}
+
+</style>
 <body>
 	<p>
-	名前を入力してください: <input type="text" id="guestName" value="ゲスト" /><br />
-	<input value="クイズに参加" type="button" onclick="quizJoin()" />
-	<br />
-	<br />
-	<br />
-	<input value="回答状況をみる" type="button"
-		onclick="window.location.href ='quizlist.html'" />
+	<center>
+	<font size="+3">メインメニュー</font>
+	<br><br>
+	<font size="+3">名前を入力してください</font>
+	<br><br>
+	<input type="text" class="typetext" id="guestName" value="ゲスト" />
+
+<!-- 	<textarea rows="4" cols="40" size="50"id="guestName" value="ゲスト" ></textarea> -->
+	<br><br>
+	<a onclick="quizJoin()"><img src="img/quizjoin.png"></a>
+	</center>
 	</p>
+
 </body>
 </html>
