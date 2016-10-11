@@ -26,6 +26,8 @@
 					}
 				}
 				$('#correctPercent').text("この問題の正答率: " + data[3]);
+				$('#answerword').text("正解は" + data[4] + "です。");
+
 			}
 		});
 	}
@@ -41,6 +43,7 @@
 		クイズの答え<span id="quizAnswer"></span><br>
 		</font>
 		<font size="+5"><span id="quizComment"></span></font><br>
+		<font size="+3"><span id="answerword"></span></font><br>
 		<font size="+3">
 		<span id="correctPercent"></span><br>
 		</font>
