@@ -35,20 +35,41 @@
 	function changeAnswer2(answer) {
 		QuizGetter.changeGuestAnswer({guestID, answer});
 	}
+
+	function changeColor( id, color ){
+		  document.getElementById(id).style.color = color;
+	}
+
 </script>
 </head>
 <body>
 	<div id="quizArea">
-	問題<br>
-	<span id="quizString"></span><br>
-	残り時間：<span id="remainingTime"></span>秒<br>
-	</div>
+	<center>
+	<font size="5">問題</font>
 	<br>
-	<input value="1" id="one"  type="button" onclick="changeAnswer2(1);$('#one').attr('disabled', true);$('#two').attr('disabled', false);$('#three').attr('disabled', false);$('#four').attr('disabled', false);" />
-	<input value="2" id="two"  type="button" onclick="changeAnswer2(2);$('#two').attr('disabled', true);$('#one').attr('disabled', false);$('#three').attr('disabled', false);$('#four').attr('disabled', false);" />
-	<input value="3" id="three"type="button" onclick="changeAnswer2(3);$('#three').attr('disabled', true);$('#one').attr('disabled', false); $('#two').attr('disabled', false);$('#four').attr('disabled', false);"/>
-	<input value="4" id="four" type="button" onclick="changeAnswer2(4);$('#four').attr('disabled', true);$('#one').attr('disabled', false);$('#two').attr('disabled', false);$('#three').attr('disabled', false);" />
+	<font size="5"><span id="quizString"></font></span><br>
+	<font size="5">残り時間：</font><font size="5"><span id="remainingTime"></font></span><font size="5">秒</font><br>
+	</div>
+	</center>
+	<br>
+<center>
+<input style="width:150px;height:32px;font-size:25;background-color:limegreen;color:#000000;border-style:solid;border-color:black;border-width:2;"type="button" value="1" id="one"  onclick="changeAnswer2(1);$('#one').attr('disabled', true);$('#two').attr('disabled', false);$('#three').attr('disabled', false);$('#four').attr('disabled', false);changeColor('two','black');changeColor('three','black');changeColor('four','black')"
+ onmouseover="this.style.color='red'"onmouseout="this.style.color='black'">
+
+<input style="width:150px;height:32px;font-size:25;background-color:blue;color:#000000;border-style:solid;border-color:black;border-width:2;"type="button" value="2" id="two"  onclick="changeAnswer2(2);$('#two').attr('disabled', true);$('#one').attr('disabled', false);$('#three').attr('disabled', false);$('#four').attr('disabled', false);changeColor('one','black');changeColor('three','black');changeColor('four','black')"
+ onmouseover="this.style.color='red'"onmouseout="this.style.color='black'">
+
+<input style="width:150px;height:32px;font-size:25;background-color:orange;color:#000000;border-style:solid;border-color:black;border-width:2;"type="button" value="3" id="three"  onclick="changeAnswer2(3);$('#three').attr('disabled', true);$('#one').attr('disabled', false);$('#two').attr('disabled', false);$('#four').attr('disabled', false);changeColor('one','black');changeColor('two','black');changeColor('four','black')"
+ onmouseover="this.style.color='red'"onmouseout="this.style.color='black'">
+
+ <input style="width:150px;height:32px;font-size:25;background-color:yellow;color:#000000;border-style:solid;border-color:black;border-width:2;"type="button" value="4" id="four"  onclick="changeAnswer2(4);$('#four').attr('disabled', true);$('#one').attr('disabled', false);$('#two').attr('disabled', false);$('#three').attr('disabled', false);changeColor('one','black');changeColor('two','black');changeColor('three','black')"
+ onmouseover="this.style.color='red'"onmouseout="this.style.color='black'">
+
+</center>
 </body>
+
+
+
 
 <script type="text/javascript">
 	getCurrentQuiz2();

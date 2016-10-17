@@ -33,16 +33,26 @@
 </head>
 <body>
 	<div id="quizArea">
-		問題<br>
+	<center>
+ <font size="+5">問題</font><br>
+ <font size="+3">
 		<span id="quizString"></span><br>
 		あなたの解答: <span id="yourAnswer"></span><br>
 		クイズの答え: <span id="quizAnswer"></span><br>
-		<span id="quizComment"></span><br>
+		</font>
+        <font size="+5"><span id="quizComment"></span></font><br>
+        <font size="+3">
 		<span id="correctPercent"></span><br>
+		</font>
+		</center>
 	</div>
 	<br>
-	<input value="メニューに戻る" type="button"
-		onclick="window.location.replace('menu.html')" />
+	<center>
+	<input style="width:250px;height:36px;font-size:25;background-color:#80ff00;color:#000000;border-style:solid;border-color:#80ff00;border-width:2;"type="button" value="メニューに戻る" onclick="window.location.replace('menu.html')"
+onmouseover="this.style.color='red'"onmouseout="this.style.color='black'">
+
+
+</center>
 </body>
 
 <script type="text/javascript">
