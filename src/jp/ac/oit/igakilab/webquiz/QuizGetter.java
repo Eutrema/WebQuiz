@@ -119,6 +119,7 @@ public class QuizGetter {
 			list.add(String.valueOf((int) (corrects * 100.0 / answers)) + "%");
 		}
 
+		list.add(dr.doGet("SELECT answerword FROM quiz WHERE quizID = " + quizID)[0]);
 		dr.endTransaction();
 		return list;
 	}

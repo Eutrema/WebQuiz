@@ -39,13 +39,20 @@
 </head>
 <body>
 	<div id="quizArea">
-	問題<br>
+	<center>
+	<font size="+5">問題</font>
+	<br><br>
+	<font size="+3">
 	<span id="quizString"></span><br>
 	残り時間：<span id="remainingTime"></span>秒<br>
+	</font>
 	</div>
-	<br>
-	<input value="○" id="maru" type="button" onclick="changeAnswer(1);$('#maru').attr('disabled', true);$('#batu').attr('disabled', false);" />
-	<input value="×" id="batu" type="button" onclick="changeAnswer(2);$('#batu').attr('disabled', true);$('#maru').attr('disabled', false);" />
+	<br><br>
+	</center>
+	<center>
+	<input type="image" src="img/maru.png" id="maru"  onclick="changeAnswer(1);$('#maru').attr('disabled', true);$('#batu').attr('disabled', false);$('#maru').attr('src', 'img/cmaru.png');$('#batu').attr('src', 'img/batu.png');" />
+	<input type="image" src="img/batu.png" id="batu" onclick="changeAnswer(2);$('#batu').attr('disabled', true);$('#maru').attr('disabled', false);$('#batu').attr('src', 'img/cbatu.png');$('#maru').attr('src', 'img/maru.png');" />
+	</center>
 </body>
 
 <script type="text/javascript">
