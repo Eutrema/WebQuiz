@@ -1,0 +1,44 @@
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="dwr/engine.js"></script>
+<script type="text/javascript" src="dwr/util.js"></script>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/jquery.serialize.js"></script>
+<script type="text/javascript" src="dwr/interface/QuizGetter.js"></script>
+<script type="text/javascript">
+	function quizJoin() {
+		QuizGetter.quizJoin($('#guestName').val(), {
+			callback : function(guestID) {
+				window.location.replace("quiz.html?" + guestID);
+			}
+		});
+	}
+
+	function quizJoin2() {
+		QuizGetter.quizJoin($('#guestName').val(), {
+			callback : function(guestID) {
+				window.location.replace("quiz2.html?" + guestID);
+			}
+		});
+	}
+</script>
+</head>
+<body>
+	<p>
+	<center>
+	<font size="5">問題を選択してください。</font>
+	<br><br>
+	<input style="width:150px;height:32px;font-size:25;background-color:#0080ff;color:#000000;border-style:solid;border-color:#0080ff;border-width:2;"type="button" value="○×クイズ"
+ onmouseover="this.style.color='red'"onmouseout="this.style.color='black'" onclick="quizJoin()"/>
+
+
+<input style="width:150px;height:32px;font-size:25;background-color:#80ff00;color:#000000;border-style:solid;border-color:#80ff00;border-width:2;"type="button" value="4択クイズ"
+onmouseover="this.style.color='red'"onmouseout="this.style.color='black'" onclick="quizJoin2()"/>
+
+
+
+</center>
+</p>
+</body>
+</html>
