@@ -50,8 +50,14 @@
 	<br><br>
 	</center>
 	<center>
-	<input type="image" src="img/maru.png" id="maru"  onclick="changeAnswer(1);$('#maru').attr('disabled', true);$('#batu').attr('disabled', false);$('#maru').attr('src', 'img/cmaru.png');$('#batu').attr('src', 'img/batu.png');" />
-	<input type="image" src="img/batu.png" id="batu" onclick="changeAnswer(2);$('#batu').attr('disabled', true);$('#maru').attr('disabled', false);$('#batu').attr('src', 'img/cbatu.png');$('#maru').attr('src', 'img/maru.png');" />
+	<input style="width:150px;height:32px;font-size:25;background-color:limegreen;color:#000000;border-style:solid;border-color:black;border-width:2;"type="button" value="○" id="maru"  onclick="changeAnswer(1);$('#maru').attr('disabled', true);$('#batu').attr('disabled', false);changeColor('batu','black')"
+     onmouseover="this.style.color='red'"onmouseout="this.style.color='black'">
+
+     <input style="width:150px;height:32px;font-size:25;background-color:blue;color:#000000;border-style:solid;border-color:black;border-width:2;"type="button" value="×" id="batu"  onclick="changeAnswer(2);$('#batu').attr('disabled', true);$('#maru').attr('disabled', false);changeColor('maru','black')"
+     onmouseover="this.style.color='red'"onmouseout="this.style.color='black'">
+
+<!-- 	<input type="image" src="img/maru.png" id="maru"  onclick="changeAnswer(1);$('#maru').attr('disabled', true);$('#batu').attr('disabled', false);$('#maru').attr('src', 'img/cmaru.png');$('#batu').attr('src', 'img/batu.png');" /> -->
+<!-- 	<input type="image" src="img/batu.png" id="batu" onclick="changeAnswer(2);$('#batu').attr('disabled', true);$('#maru').attr('disabled', false);$('#batu').attr('src', 'img/cbatu.png');$('#maru').attr('src', 'img/maru.png');" /> -->
 	</center>
 </body>
 
