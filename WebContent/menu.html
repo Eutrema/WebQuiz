@@ -6,15 +6,7 @@
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/jquery.serialize.js"></script>
 <script type="text/javascript" src="dwr/interface/QuizGetter.js"></script>
-<script type="text/javascript">
-	function quizJoin() {
-		QuizGetter.quizJoin($('#guestName').val(), {
-			callback : function(guestID) {
-				window.location.replace("menu2.html?" + guestID);
-			}
-		});
-	}
-</script>
+
 </head>
 <style type="text/css">
 .typetext{
@@ -27,9 +19,8 @@ height:1.5em;
 <body>
 	<p>
 	<center>
-	<font size="5">名前を入力してください: <input type="text" id="guestName" value="ゲスト" /><br />
-<input style="width:200px;height:32px;font-size:25;background-color:#0080ff;color:#000000;border-style:solid;border-color:#0080ff;border-width:2;"type="button" value="クイズに参加"
- onmouseover="this.style.color='red'"onmouseout="this.style.color='black'" onclick="quizJoin()"/>
+	<input style="width:200px;height:32px;font-size:25;background-color:#0080ff;color:#000000;border-style:solid;border-color:#0080ff;border-width:2;"type="button" value="クイズに参加"
+ onmouseover="this.style.color='red'"onmouseout="this.style.color='black'" onclick="window.location.href ='menu2.html'"/>
 	</font>
 	<br />
 	<br />
