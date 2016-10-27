@@ -84,6 +84,8 @@ public class DBController {
 				}
 			}
 		}
+		System.out.println("query: " + sql);
+		System.out.println("reply: " + list.toString());
 		return list.toArray(new String[0]);
 	}
 
@@ -181,6 +183,8 @@ public class DBController {
 			}
 		}
 		// リストを配列に戻して返却
+		System.out.println("query: " + sql);
+		System.out.println("reply: " + list.toString());
 		return list.toArray(new String[0]);
 	}
 }

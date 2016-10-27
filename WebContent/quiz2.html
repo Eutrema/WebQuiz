@@ -17,6 +17,7 @@
 		QuizGetter.getCurrentQuiz2(guestID,
 		{
 			callback : function(data) {
+				console.log(data);
 				$('#quizString').html(data[0]);
 				deadline = parseInt( data[1] / 1000 );
 				$('#remainingTime').text(deadline - parseInt( new Date() / 1000 ));
@@ -53,16 +54,16 @@
 	</center>
 	<br>
 <center>
-<input style="width:150px;height:32px;font-size:25;background-color:limegreen;color:#000000;border-style:solid;border-color:black;border-width:2;"type="button" value="1" id="one"  onclick="changeAnswer2(1);$('#one').attr('disabled', true);$('#two').attr('disabled', false);$('#three').attr('disabled', false);$('#four').attr('disabled', false);changeColor('two','black');changeColor('three','black');changeColor('four','black')"
+<input style="width:150px;height:32px;font-size:25;background-color:limegreen;color:#000000;border-style:solid;border-color:black;border-width:2;"type="button" value="1" id="one"  onclick="changeAnswer2(3);$('#one').attr('disabled', true);$('#two').attr('disabled', false);$('#three').attr('disabled', false);$('#four').attr('disabled', false);changeColor('two','black');changeColor('three','black');changeColor('four','black')"
  onmouseover="this.style.color='red'"onmouseout="this.style.color='black'">
 
-<input style="width:150px;height:32px;font-size:25;background-color:blue;color:#000000;border-style:solid;border-color:black;border-width:2;"type="button" value="2" id="two"  onclick="changeAnswer2(2);$('#two').attr('disabled', true);$('#one').attr('disabled', false);$('#three').attr('disabled', false);$('#four').attr('disabled', false);changeColor('one','black');changeColor('three','black');changeColor('four','black')"
+<input style="width:150px;height:32px;font-size:25;background-color:blue;color:#000000;border-style:solid;border-color:black;border-width:2;"type="button" value="2" id="two"  onclick="changeAnswer2(4);$('#two').attr('disabled', true);$('#one').attr('disabled', false);$('#three').attr('disabled', false);$('#four').attr('disabled', false);changeColor('one','black');changeColor('three','black');changeColor('four','black')"
  onmouseover="this.style.color='red'"onmouseout="this.style.color='black'">
 
-<input style="width:150px;height:32px;font-size:25;background-color:orange;color:#000000;border-style:solid;border-color:black;border-width:2;"type="button" value="3" id="three"  onclick="changeAnswer2(3);$('#three').attr('disabled', true);$('#one').attr('disabled', false);$('#two').attr('disabled', false);$('#four').attr('disabled', false);changeColor('one','black');changeColor('two','black');changeColor('four','black')"
+<input style="width:150px;height:32px;font-size:25;background-color:orange;color:#000000;border-style:solid;border-color:black;border-width:2;"type="button" value="3" id="three"  onclick="changeAnswer2(5);$('#three').attr('disabled', true);$('#one').attr('disabled', false);$('#two').attr('disabled', false);$('#four').attr('disabled', false);changeColor('one','black');changeColor('two','black');changeColor('four','black')"
  onmouseover="this.style.color='red'"onmouseout="this.style.color='black'">
 
- <input style="width:150px;height:32px;font-size:25;background-color:yellow;color:#000000;border-style:solid;border-color:black;border-width:2;"type="button" value="4" id="four"  onclick="changeAnswer2(4);$('#four').attr('disabled', true);$('#one').attr('disabled', false);$('#two').attr('disabled', false);$('#three').attr('disabled', false);changeColor('one','black');changeColor('two','black');changeColor('three','black')"
+ <input style="width:150px;height:32px;font-size:25;background-color:yellow;color:#000000;border-style:solid;border-color:black;border-width:2;"type="button" value="4" id="four"  onclick="changeAnswer2(6);$('#four').attr('disabled', true);$('#one').attr('disabled', false);$('#two').attr('disabled', false);$('#three').attr('disabled', false);changeColor('one','black');changeColor('two','black');changeColor('three','black')"
  onmouseover="this.style.color='red'"onmouseout="this.style.color='black'">
 
 </center>

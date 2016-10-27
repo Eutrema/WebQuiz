@@ -163,7 +163,17 @@ public class QuizGetter {
 			str = "○";
 		} else if (ans == 2) {
 			str = "×";
-		} else {
+		} else if (ans == 3) {
+			str = "1";
+		} else if (ans == 4) {
+			str = "2";
+		} else if (ans == 5) {
+			str = "3";
+		}
+		 else if (ans == 6) {
+				str = "4";
+		}
+		else {
 			str = "未回答";
 		}
 		return str;
@@ -172,14 +182,14 @@ public class QuizGetter {
 	private String answerConvert2(int ans) {
 		String str;
 		ans = Math.abs(ans);
-		if (ans == 1) {
+		if (ans == 3) {
 			str = "1";
-		} else if (ans == 2) {
+		} else if (ans == 4) {
 			str = "2";
-		} else if (ans == 3) {
+		} else if (ans == 5) {
 			str = "3";
 		}
-		 else if (ans == 4) {
+		 else if (ans == 6) {
 				str = "4";
 			}
 		else {
@@ -212,6 +222,7 @@ public class QuizGetter {
 		dbc.endTransaction();
 		return data;
 	}
+
 	public String getDeadline(int currentQuizID) {
 		DBController dr = new DBController();
 		return dr.doGet("SELECT quizDeadline FROM currentquiz WHERE currentQuizID = " + currentQuizID)[0];

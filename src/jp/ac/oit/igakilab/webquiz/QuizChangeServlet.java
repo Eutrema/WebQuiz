@@ -39,8 +39,9 @@ public class QuizChangeServlet extends HttpServlet {
 			Date now = new Date();
 			dr.doUpdate("UPDATE currentquiz SET quizState = 1 WHERE quizDeadline < '" + sdf.format(now) + "'");
 
-
+			//○×問題の生成
 			StringBuilder sb = new StringBuilder();
+
 			sb.append("INSERT INTO currentquiz VALUES ('");
 			sb.append((int) (Math.random() * 1000 + 1));
 			sb.append("', '0', '");
@@ -51,7 +52,23 @@ public class QuizChangeServlet extends HttpServlet {
 			Date deadline = new Date(System.currentTimeMillis() + 1000 * 55);
 			sb.append(sdf.format(deadline));
 			sb.append("', '0', '0', '0')");
-			dr.doUpdate(sb.toString());
+			System.out.println("change task" +  sb);
+
+
+			//四択問題の生成
+			StringBuilder sr = new StringBuilder();
+
+			sr.append("INSERT INTO currentquiz VALUES ('");
+			sr.append((int) (Math.random() * 1000 + 1));
+			sr.append("', '0', '");
+			sr.append((int) (Math.random() * 30 + 31));
+
+			//sb.append((int) (Math.random() * dr.doGet("select quizID from quiz").length + 1));//
+			sr.append("', '");
+			sr.append(sdf.format(deadline));
+			sr.append("', '0', '0', '0')");
+			System.out.println("change task" +  sr);
+			dr.doUpdate(sr.toString());
 			dr.endTransaction();
 		}
 	}

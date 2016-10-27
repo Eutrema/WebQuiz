@@ -17,6 +17,7 @@
 		QuizGetter.getCurrentQuiz(guestID,
 		{
 			callback : function(data) {
+				console.log(data);
 				$('#quizString').html(data[0]);
 				deadline = parseInt( data[1] / 1000 );
 				$('#remainingTime').text(deadline - parseInt( new Date() / 1000 ));
