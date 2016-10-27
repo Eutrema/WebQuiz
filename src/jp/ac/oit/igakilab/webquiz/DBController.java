@@ -109,6 +109,9 @@ public class DBController {
 			stmt = conn.createStatement();
 			// SQL文を実行
 			stmt.executeUpdate(sql);
+
+			System.out.println("query: " + sql);
+
 		} catch (Exception e) {
 			// 例外処理(スタックトレースを表示)
 			e.printStackTrace();
