@@ -14,34 +14,33 @@
 	var deadline = 0;
 	var quizID = 0;
 
-	function getCurrentQuiz() {
-		QuizGetter.getCurrentQuiz(guestID,
+	function getCurrentQuiz3() {
+		QuizGetter.getCurrentQuiz2(guestID,
 		{
 			callback : function(data) {
-				$('#quizString').html(data[0]);
+				$('#quizString2').html(data[0]);
 //                deadline = parseInt( data[1] / 1000 );
 //                 $('#remainingTime').text(deadline - parseInt( new Date() / 1000 ));
-// 				setInterval(refreshTime, 1000);
+// 				setInterval(refreshTime3, 1000);
 			}
-	});
+		});
 	}
-	//function refreshTime() {
-	//var remain = deadline - parseInt( new Date() / 1000 );
-		//$('#remainingTime').text(remain);
+// 	function refreshTime3() {
+// 	var remain = deadline - parseInt( new Date() / 1000 );
+// 		$('#remainingTime').text(remain);
 
-		//if (remain <= 0) {
-		//	window.location.replace("answer.html?" + escape(guestID));
-		//}
+// 		if (remain <= 0) {
+// 			window.location.replace("answer.html?" + escape(guestID));
+// 		}
 
-	//}
+// 	}
 	function changeAnswer(answer) {
-		QuizGetter.changeGuestAnswer({guestID, answer});
+		QuizGetter.changeGuestAnswer2({guestID, answer});
 	}
 
-	function changequiz(){
+	function changequiz3(){
 		QuizGetter.QuizChange();
 	}
-
 
 </script>
 </head>
@@ -50,26 +49,26 @@
 	<div id="quizArea">
 	<center>
 	<br><br>
-	<font size="+5">問題</font>
+	<font size="+5">問題2</font>
 	<br><br>
 	<font size="+3">
-	<span id="quizString"></span><br>
+	<span id="quizString2"></span><br>
 <!-- 	残り時間：<span id="remainingTime"></span>秒<br> -->
 	</font>
 	</div>
 	<br><br>
 	</center>
 	<center>
-	<input type="image" src="img/maru.png" id="maru"  onclick="changeAnswer(1);$('#maru').attr('disabled', true);$('#batu').attr('disabled', false);$('#maru').attr('src', 'img/cmaru.png');$('#batu').attr('src', 'img/batu.png');" />
-	<input type="image" src="img/batu.png" id="batu" onclick="changeAnswer(2);$('#batu').attr('disabled', true);$('#maru').attr('disabled', false);$('#batu').attr('src', 'img/cbatu.png');$('#maru').attr('src', 'img/maru.png');" />
+	<input type="image" src="img/maru.png" id="maru2"  onclick="changeAnswer(1);$('#maru2').attr('disabled', true);$('#batu2').attr('disabled', false);$('#maru2').attr('src', 'img/cmaru.png');$('#batu2').attr('src', 'img/batu.png');" />
+	<input type="image" src="img/batu.png" id="batu2" onclick="changeAnswer(2);$('#batu2').attr('disabled', true);$('#maru2').attr('disabled', false);$('#batu2').attr('src', 'img/cbatu.png');$('#maru2').attr('src', 'img/maru.png');" />
 	<br>
-	<input style="width:150px;height:32px;font-size:25;background-color:limegreen;color:#000000;border-style:solid;border-color:black;border-width:2;"type="button" value="次の問題へ"   onclick="window.location.replace('quiz3.html?'+guestID)";
+	<input style="width:150px;height:32px;font-size:25;background-color:limegreen;color:#000000;border-style:solid;border-color:black;border-width:2;"type="button" value="答え合わせ"   onclick="window.location.replace('answer.html?'+guestID)";
  onmouseover="this.style.color='red'"onmouseout="this.style.color='black'">
 	</center>
+	<script type="text/javascript">
+    changequiz3();
+	getCurrentQuiz3();
+	</script>
 </body>
 
-<script type="text/javascript">
-    changequiz();
-	getCurrentQuiz();
-</script>
 </html>

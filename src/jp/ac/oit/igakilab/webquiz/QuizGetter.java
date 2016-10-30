@@ -3,6 +3,7 @@ package jp.ac.oit.igakilab.webquiz;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class QuizGetter {
@@ -20,8 +21,8 @@ public class QuizGetter {
 							+ guestAnswerID)[0])
 					.getTime()));
 		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		e.printStackTrace();
+	}
 		dr.endTransaction();
 		return list;
 	}
@@ -31,12 +32,12 @@ public class QuizGetter {
 		DBController dr = new DBController();
 		dr.beginTransaction();
 		list2.add(dr
-				.doGet("SELECT quizString FROM guestanswer NATURAL JOIN currentquiz NATURAL JOIN quiz4select WHERE guestAnswerID = "
+				.doGet("SELECT quizString FROM guestanswer2 NATURAL JOIN currentquiz NATURAL JOIN quiz2 WHERE guestAnswerID = "
 						+ guestAnswerID)[0]);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy'-'MM'-'dd' 'HH':'mm':'ss");
 		try {
 			list2.add(String.valueOf(sdf.parse(
-					dr.doGet("SELECT quizDeadline FROM guestanswer NATURAL JOIN currentquiz WHERE guestAnswerID = "
+					dr.doGet("SELECT quizDeadline FROM guestanswer2 NATURAL JOIN currentquiz WHERE guestAnswerID = "
 							+ guestAnswerID)[0])
 					.getTime()));
 		} catch (ParseException e) {
@@ -45,6 +46,7 @@ public class QuizGetter {
 		dr.endTransaction();
 		return list2;
 	}
+
 
 	public List<QuizData> getCurrentQuizList() {
 		List<QuizData> list = new ArrayList<QuizData>();
@@ -89,6 +91,39 @@ public class QuizGetter {
 		dr.endTransaction();
 		return guestID;
 	}
+
+	public int quizJoin2(String name) {
+		DBController dr = new DBController();
+		dr.beginTransaction();
+		int quizID = Integer.parseInt(dr.doGet("SELECT currentQuizID FROM currentQuiz WHERE quizState = 0")[0]);
+		String[] ids = dr.doGet("SELECT guestAnswerID FROM guestanswer2");
+		int guestID;
+		if (ids.length == 0) {
+			guestID = 1;
+		} else {
+			guestID = Integer.valueOf(ids[ids.length - 1]) + 1;
+		}
+		StringBuilder sb = new StringBuilder();
+		sb.append("INSERT INTO guestanswer2 VALUES ('");
+		sb.append(guestID);
+		sb.append("', '");
+		sb.append(name);
+		sb.append("', '");
+		sb.append(quizID);
+		sb.append("', '0')");
+		dr.doUpdate(sb.toString());
+		dr.endTransaction();
+		return guestID;
+	}
+
+
+
+
+
+
+
+
+
 
 	// 問題文, 自分の答え, 実際の答え, 問題の正答率
 	public List<String> quizFinish(int guestAnswerID) {
@@ -155,6 +190,40 @@ public class QuizGetter {
 		return list2;
 	}
 
+
+	public List<String> quizFinish3(int guestAnswerID) {
+		List<String> list3 = new ArrayList<String>();
+		DBController dr = new DBController();
+		dr.beginTransaction();
+		int quizID = Integer.parseInt(dr
+				.doGet("SELECT quizID FROM guestanswer2 NATURAL JOIN currentquiz NATURAL JOIN quiz2 WHERE guestAnswerID = "
+						+ guestAnswerID)[0]);
+		list3.add(dr.doGet("SELECT quizString FROM quiz2 WHERE quizID = " + quizID)[0]);
+		int guestans = Integer
+				.parseInt(dr.doGet("SELECT answer FROM guestanswer2 WHERE guestAnswerID = " + guestAnswerID)[0]);
+		list3.add(answerConvert(guestans));
+		int ans = Integer.parseInt(dr.doGet("SELECT quizAnswer FROM quiz2 WHERE quizID = " + quizID)[0]);
+		list3.add(answerConvert(ans));
+		if (guestans > 0) {
+			dr.doUpdate("UPDATE quiz2 SET answers = answers + 1 WHERE quizID = " + quizID);
+			if (guestans == ans) {
+				dr.doUpdate("UPDATE quiz2 SET corrects = corrects + 1 WHERE quizID = " + quizID);
+			}
+			dr.doUpdate("UPDATE guestanswer SET answer = -answer WHERE guestAnswerID = " + guestAnswerID);
+		}
+		int corrects = Integer.parseInt(dr.doGet("SELECT corrects FROM quiz2 WHERE quizID = " + quizID)[0]);
+		int answers = Integer.parseInt(dr.doGet("SELECT answers FROM quiz2 WHERE quizID = " + quizID)[0]);
+		if (answers == 0) {
+			list3.add("0%");
+		} else {
+			list3.add(String.valueOf((int) (corrects * 100.0 / answers)) + "%");
+		}
+
+		list3.add(dr.doGet("SELECT answerword FROM quiz2 WHERE quizID = " + quizID)[0]);
+		dr.endTransaction();
+		return list3;
+	}
+
 	//○や×のところに語群を入れられるようにする
 	private String answerConvert(int ans) {
 		String str;
@@ -163,11 +232,14 @@ public class QuizGetter {
 			str = "○";
 		} else if (ans == 2) {
 			str = "×";
-		} else {
+		}
+		else {
 			str = "未回答";
 		}
 		return str;
 	}
+
+
 
 	private String answerConvert2(int ans) {
 		String str;
@@ -212,8 +284,57 @@ public class QuizGetter {
 		dbc.endTransaction();
 		return data;
 	}
+
+	public void changeGuestAnswer2(AnswerChangeRequest ans) {
+		DBController dr = new DBController();
+		int id = ans.getguestID();
+		int answer = ans.getanswer();
+		dr.doUpdate("UPDATE guestanswer2 SET answer = " + answer + " WHERE guestAnswerID = " + id);
+	}
+
+
+
+
+
+
+
 	public String getDeadline(int currentQuizID) {
 		DBController dr = new DBController();
 		return dr.doGet("SELECT quizDeadline FROM currentquiz WHERE currentQuizID = " + currentQuizID)[0];
 	}
+
+
+	public static void QuizChange(){
+
+			DBController dr = new DBController();
+			dr.beginTransaction();
+			// 11分経ったクイズを削除
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy'-'MM'-'dd' 'HH':'mm':'ss");
+			//Date dead = new Date(System.currentTimeMillis() - 10000 * 55);
+			//dr.doUpdate(
+					//"DELETE currentquiz, guestanswer FROM currentquiz LEFT JOIN guestanswer ON currentquiz.currentQuizID = guestanswer.currentQuizID WHERE quizDeadline < '"
+							//+ sdf.format(dead) + "'");
+			// 1分経ったクイズを答え合わせ専用に
+			//Date now = new Date();
+			//dr.doUpdate("UPDATE currentquiz SET quizState = 1 WHERE quizDeadline < '" + sdf.format(now) + "'");
+
+
+			StringBuilder sb = new StringBuilder();
+			sb.append("INSERT INTO currentquiz VALUES ('");
+			sb.append((int) (Math.random() * 1000 + 1));
+			sb.append("', '0', '");
+			sb.append((int) (Math.random() * 10 + 1));
+
+			//sb.append((int) (Math.random() * dr.doGet("select quizID from quiz").length + 1));//
+			sb.append("', '");
+			Date deadline = new Date(System.currentTimeMillis() + 1000 * 55);
+			sb.append(sdf.format(deadline));
+			sb.append("', '0', '0', '0')");
+			dr.doUpdate(sb.toString());
+			dr.endTransaction();
+		}
+
+
+
+
 }

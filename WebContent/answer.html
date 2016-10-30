@@ -31,6 +31,26 @@
 			}
 		});
 	}
+
+	function sendQuizFinish3() {
+		QuizGetter.quizFinish3(guestID, {
+			callback : function(data2) {
+				$('#quizString2').html(data2[0]);
+				$('#yourAnswer2').text(data2[1]);
+				$('#quizAnswer2').text(data2[2]);
+				if (data2[1] != "－") {
+					if (data2[1] == data2[2]) {
+						$('#quizComment2').text("正解！");
+					} else {
+						$('#quizComment2').text("不正解…");
+					}
+				}
+				$('#correctPercent2').text("この問題の正答率: " + data2[3]);
+				$('#answerword2').text("正解は" + data2[4] + "です。");
+
+			}
+		});
+	}
 </script>
 </head>
 <body>
@@ -46,7 +66,18 @@
 		<font size="+3"><span id="answerword"></span></font><br>
 		<font size="+3">
 		<span id="correctPercent"></span><br>
+		<br>
 		</font>
+		<font size="+5">問題2</font><br>
+		<font size="+3">
+		<span id="quizString2"></span><br>
+		あなたの解答<span id="yourAnswer2"></span><br>
+		クイズの答え<span id="quizAnswer2"></span><br>
+		</font>
+		<font size="+5"><span id="quizComment2"></span></font><br>
+		<font size="+3"><span id="answerword2"></span></font><br>
+		<font size="+3">
+		<span id="correctPercent2"></span><br>
 		</center>
 	</div>
 	<br>
@@ -57,5 +88,6 @@
 
 <script type="text/javascript">
 	sendQuizFinish();
+	sendQuizFinish3();
 </script>
 </html>
