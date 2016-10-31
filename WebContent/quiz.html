@@ -6,6 +6,25 @@
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/jquery.serialize.js"></script>
 <script type="text/javascript" src="dwr/interface/QuizGetter.js"></script>
+<style type="text/css">
+
+body{
+    background-image: url("img/kokuban.jpg");
+    background-bgcolor="#f0f0f0";
+    background-text: centercenter;
+    background-size:1350px;
+    background-width:3000px;
+    background-repeat: no-repeat;
+    background-position :center center;
+    margin:0;
+    padding:0;
+background-attachment:fixed;
+}
+
+}
+
+</style>
+</head>
 <script type="text/javascript">
 	var guestID = 0;
 	if (window.location.search) {
@@ -46,9 +65,10 @@
 <body background="img/kokuban.jpg">
 	<div id="quizArea">
 	<center>
+
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<font size="+5" color="white">問題</font>
-	<br><br>
+
 	<font size="+3" color="white">
 	<span id="quizString"></span><br>
 	残り時間：<span id="remainingTime"></span>秒<br>
@@ -62,7 +82,6 @@
 
      <input style="width:150px;height:60px;font-size:50;background-color:blue;color:white;border-style:solid;border-color:black;border-width:2;"type="button" value="×" id="batu"  onclick="changeAnswer(2);$('#batu').attr('disabled', true);$('#maru').attr('disabled', false);changeColor('maru','white')"
      onmouseover="this.style.color='red'"onmouseout="this.style.color='white'">
-
 
 <!-- 	<input type="image" src="img/maru.png" id="maru"  onclick="changeAnswer(1);$('#maru').attr('disabled', true);$('#batu').attr('disabled', false);$('#maru').attr('src', 'img/cmaru.png');$('#batu').attr('src', 'img/batu.png');" /> -->
 <!-- 	<input type="image" src="img/batu.png" id="batu" onclick="changeAnswer(2);$('#batu').attr('disabled', true);$('#maru').attr('disabled', false);$('#batu').attr('src', 'img/cbatu.png');$('#maru').attr('src', 'img/maru.png');" /> -->
