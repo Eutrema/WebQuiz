@@ -10,7 +10,7 @@
 	function quizJoin() {
 		QuizGetter.quizJoin($('#guestName').val(), {
 			callback : function(guestID) {
-				window.location.replace("quiz.html?" + guestID);
+				window.location.replace("menu2.html?" + guestID);
 			}
 		});
 	}
@@ -27,11 +27,18 @@ height:1.5em;
 <body>
 	<p>
 	<center>
-	<font size="+3">メインメニュー</font>
-	<br><br>
-	<font size="+3">名前を入力してください</font>
-	<br><br>
-	<input type="text" class="typetext" id="guestName" value="ゲスト" />
+	<font size="5">名前を入力してください: <input type="text" id="guestName" value="ゲスト" /><br />
+<input style="width:200px;height:32px;font-size:25;background-color:#0080ff;color:#000000;border-style:solid;border-color:#0080ff;border-width:2;"type="button" value="クイズに参加"
+ onmouseover="this.style.color='red'"onmouseout="this.style.color='black'" onclick="quizJoin()"/>
+	</font>
+	<br />
+	<br />
+	<br />
+	<input style="width:200px;height:32px;font-size:25;background-color:green;color:#000000;border-style:solid;border-color:green;border-width:2;"type="button" value="回答状況をみる"
+ onmouseover="this.style.color='red'"onmouseout="this.style.color='black'" onclick="window.location.href ='quizlist.html'"/>
+
+</center>
+
 
 <!-- 	<textarea rows="4" cols="40" size="50"id="guestName" value="ゲスト" ></textarea> -->
 	<br><br>
