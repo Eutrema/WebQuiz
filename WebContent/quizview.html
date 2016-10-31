@@ -12,6 +12,7 @@
     //リバースAjaxについて調べる
     //→この動作に向いてないっぽい？ので普通に秒指定で問い合わせる
     //こういうのを使うらしい→ dwr.engine.setActiveReverseAjax(true);
+
     var currentQuizID = 0;
 	if (window.location.search) {
         currentQuizID = unescape(window.location.search.substring(1, window.location.search.length));
@@ -24,18 +25,20 @@
 	function getGuestAnswersData() {
 		QuizGetter.getGuestAnswersData(currentQuizID, {
 			callback : function(data) {
-				var text = "<table>";
+				var text = "<table border=5  width=150 cellpadding=5>";
 				var answerNumber = data.length;//, ans0 = 0, ans1 = 0;
 				for (var i = 0; i < data.length; ++i) {
 					text += "<tr>";
 					text += "<td>";
 					text += "ID: ";
 					text += data[i].guestID;
-					text += "</td>";
-					text += "<td>";
+					text += "</td>"
+				    text += "<td>";
 					text += "名前: ";
 					text += data[i].guestName;
 					text += "</td>";
+					text += "</tr>"
+				    text += "<tr>"
 					text += "<td>";
 					text += "解答: ";
 					text += data[i].answer;
@@ -67,12 +70,16 @@
 	setInterval(getGuestAnswersData, 5000);
 </script>
 </head>
-<body>
+<body background="img/kokuban.jpg">
+<center>
+<br>
+
 	クイズ期間 <span id="deadline"></span>まで
 	<div id="area">
 	</div>
 	<br>
 	<input value="クイズ一覧に戻る" type="button"
 		onclick="window.location.href ='quizlist.html'" />
+		</center>
 </body>
 </html>
