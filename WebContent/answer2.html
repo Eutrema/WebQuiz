@@ -12,8 +12,8 @@
 		guestID = unescape(window.location.search.substring(1,
 				window.location.search.length));
 	}
-	function sendQuizFinish() {
-		QuizGetter.quizFinish(guestID, {
+	function sendQuizFinish2() {
+		QuizGetter.quizFinish2(guestID, {
 			callback : function(data) {
 				$('#quizString').html(data[0]);
 				$('#yourAnswer').text(data[1]);
@@ -26,8 +26,6 @@
 					}
 				}
 				$('#correctPercent').text("この問題の正答率: " + data[3]);
-				$('#answerword').text("正解は" + data[4] + "です。");
-
 			}
 		});
 	}
@@ -35,27 +33,29 @@
 </head>
 <body>
 	<div id="quizArea">
-		<center>
-		<font size="+5">問題</font><br>
-		<font size="+3">
+	<center>
+ <font size="+5">問題</font><br>
+ <font size="+3">
 		<span id="quizString"></span><br>
-		あなたの解答<span id="yourAnswer"></span><br>
-		クイズの答え<span id="quizAnswer"></span><br>
+		あなたの解答: <span id="yourAnswer"></span><br>
+		クイズの答え: <span id="quizAnswer"></span><br>
 		</font>
-		<font size="+5"><span id="quizComment"></span></font><br>
-		<font size="+3"><span id="answerword"></span></font><br>
-		<font size="+3">
+        <font size="+5"><span id="quizComment"></span></font><br>
+        <font size="+3">
 		<span id="correctPercent"></span><br>
 		</font>
 		</center>
 	</div>
 	<br>
 	<center>
-	<a onclick="window.location.replace('menu.html')"><img src="img/backmenu.png"></a>
-	</center>
+	<input style="width:250px;height:36px;font-size:25;background-color:#80ff00;color:#000000;border-style:solid;border-color:#80ff00;border-width:2;"type="button" value="メニューに戻る" onclick="window.location.replace('menu.html')"
+onmouseover="this.style.color='red'"onmouseout="this.style.color='black'">
+
+
+</center>
 </body>
 
 <script type="text/javascript">
-	sendQuizFinish();
+	sendQuizFinish2();
 </script>
 </html>

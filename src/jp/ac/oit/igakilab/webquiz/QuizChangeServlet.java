@@ -39,11 +39,14 @@ public class QuizChangeServlet extends HttpServlet {
 			Date now = new Date();
 			dr.doUpdate("UPDATE currentquiz SET quizState = 1 WHERE quizDeadline < '" + sdf.format(now) + "'");
 
+
 			StringBuilder sb = new StringBuilder();
 			sb.append("INSERT INTO currentquiz VALUES ('");
 			sb.append((int) (Math.random() * 1000 + 1));
 			sb.append("', '0', '");
-			sb.append((int) (Math.random() * 2 + 1));
+			sb.append((int) (Math.random() * 30 + 1));
+
+			//sb.append((int) (Math.random() * dr.doGet("select quizID from quiz").length + 1));//
 			sb.append("', '");
 			Date deadline = new Date(System.currentTimeMillis() + 1000 * 55);
 			sb.append(sdf.format(deadline));
