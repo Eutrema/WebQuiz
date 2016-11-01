@@ -46,27 +46,26 @@ background-attachment:fixed;
 	function getGuestAnswersData() {
 		QuizGetter.getGuestAnswersData(currentQuizID, {
 			callback : function(data) {
-				var text = "<table border=5  width=150 cellpadding=5>";
+				var text = "<table border=0 cellspacing=0 cellpadding=5><tr>";
 				var answerNumber = data.length;//, ans0 = 0, ans1 = 0;
 				for (var i = 0; i < data.length; ++i) {
+					text += "<td width=180><table border=2 bordercolor=white cellspacing=2 cellpadding=2>";
 					text += "<tr>";
-					text += "<td>";
-					text += "ID: ";
-					text += data[i].guestID;
-					text += "</td>"
-				    text += "<td>";
+					text += "<td width=150 style=color:white>";
 					text += "名前: ";
 					text += data[i].guestName;
 					text += "</td>";
 					text += "</tr>"
 				    text += "<tr>"
-					text += "<td>";
-					text += "解答: ";
+					text += "<td width=150 height=120 style=color:white>";
+					text += "解答: <font style=font-size:75pt>";
 					text += data[i].answer;
-					text += "</td>";
-					text += "</tr>\n";
+					text += "</font></td>";
+					text += "</tr>";
+					text += "</table></td>";
 				}
 				text += "\n</table>";
+				text += "<font color=white>";
 				if (text == "<table>\n</table>") {
 					text += "<br />まだ解答者がいません。";
 				} else {
@@ -83,6 +82,7 @@ background-attachment:fixed;
 					text += answerNumber - ans0 - ans1;
 					*/
 				}
+				text += "</font>";
 				$('#area').html(text);
 			}
 		});
@@ -92,9 +92,9 @@ background-attachment:fixed;
 </script>
 <body background="img/kokuban.jpg">
 <center>
-<br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-	クイズ期間 <span id="deadline"></span>まで
+	<font color="white">クイズ期間 <span id="deadline"></span>まで</font>
 	<div id="area">
 	</div>
 	<br>
