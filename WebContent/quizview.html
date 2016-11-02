@@ -49,15 +49,15 @@ background-attachment:fixed;
 				var text = "<table border=0 cellspacing=0 cellpadding=5><tr>";
 				var answerNumber = data.length;//, ans0 = 0, ans1 = 0;
 				for (var i = 0; i < data.length; ++i) {
-					text += "<td width=180><table border=2 bordercolor=white cellspacing=2 cellpadding=2>";
+					text += "<td width=200><table border=2 bordercolor=white cellspacing=2 cellpadding=2>";
 					text += "<tr>";
-					text += "<td width=150 style=color:white>";
+					text += "<td width=180 style=color:white><font size=+2>";
 					text += "名前: ";
 					text += data[i].guestName;
 					text += "</td>";
 					text += "</tr>"
 				    text += "<tr>"
-					text += "<td width=150 height=120 style=color:white>";
+					text += "<td width=180 height=120 style=color:white>";
 					text += "解答: <font style=font-size:75pt>";
 					text += data[i].answer;
 					text += "</font></td>";
@@ -65,7 +65,7 @@ background-attachment:fixed;
 					text += "</table></td>";
 				}
 				text += "\n</table>";
-				text += "<font color=white>";
+				text += "<font color=white size=+2>";
 				if (text == "<table>\n</table>") {
 					text += "<br />まだ解答者がいません。";
 				} else {
@@ -94,7 +94,7 @@ background-attachment:fixed;
 <center>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-	<font color="white">クイズ期間 <span id="deadline"></span>まで</font>
+	<font color="white" size="+2">クイズ期間 <span id="deadline"></span>まで</font>
 	<div id="area">
 	</div>
 	<br>
