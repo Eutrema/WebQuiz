@@ -164,13 +164,13 @@ public class QuizGetter {
 		} else if (ans == 2) {
 			str = "×";
 		} else if (ans == 3) {
-			str = "1";
+			str = "１";
 		} else if (ans == 4) {
-			str = "2";
+			str = "２";
 		} else if (ans == 5) {
-			str = "3";
+			str = "３";
 		} else if (ans == 6) {
-				str = "4";
+				str = "４";
 		} else {
 			str = "ー";
 		}
@@ -181,14 +181,14 @@ public class QuizGetter {
 		String str;
 		ans = Math.abs(ans);
 		if (ans == 1) {
-			str = "1";
+			str = "１";
 		} else if (ans == 2) {
-			str = "2";
+			str = "２";
 		} else if (ans == 3) {
-			str = "3";
+			str = "３";
 		}
 		 else if (ans == 4) {
-				str = "4";
+				str = "４";
 			}
 		else {
 			str = "未回答";
