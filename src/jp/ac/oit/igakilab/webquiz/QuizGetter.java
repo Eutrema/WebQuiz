@@ -133,7 +133,7 @@ public class QuizGetter {
 		list2.add(dr.doGet("SELECT quizString FROM quiz4select WHERE quizID = " + quizID)[0]);
 		int guestans = Integer
 				.parseInt(dr.doGet("SELECT answer FROM guestanswer WHERE guestAnswerID = " + guestAnswerID)[0]);
-		list2.add(answerConvert2(guestans));
+		list2.add(answerConvert(guestans));
 		int ans = Integer.parseInt(dr.doGet("SELECT quizAnswer FROM quiz4select WHERE quizID = " + quizID)[0]);
 		list2.add(answerConvert2(ans));
 		if (guestans > 0) {
@@ -163,8 +163,16 @@ public class QuizGetter {
 			str = "○";
 		} else if (ans == 2) {
 			str = "×";
+		} else if (ans == 3) {
+			str = "１";
+		} else if (ans == 4) {
+			str = "２";
+		} else if (ans == 5) {
+			str = "３";
+		} else if (ans == 6) {
+				str = "４";
 		} else {
-			str = "未回答";
+			str = "ー";
 		}
 		return str;
 	}
@@ -173,14 +181,14 @@ public class QuizGetter {
 		String str;
 		ans = Math.abs(ans);
 		if (ans == 1) {
-			str = "1";
+			str = "１";
 		} else if (ans == 2) {
-			str = "2";
+			str = "２";
 		} else if (ans == 3) {
-			str = "3";
+			str = "３";
 		}
 		 else if (ans == 4) {
-				str = "4";
+				str = "４";
 			}
 		else {
 			str = "未回答";
@@ -212,6 +220,7 @@ public class QuizGetter {
 		dbc.endTransaction();
 		return data;
 	}
+
 	public String getDeadline(int currentQuizID) {
 		DBController dr = new DBController();
 		return dr.doGet("SELECT quizDeadline FROM currentquiz WHERE currentQuizID = " + currentQuizID)[0];

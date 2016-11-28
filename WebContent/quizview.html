@@ -6,12 +6,34 @@
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/jquery.serialize.js"></script>
 <script type="text/javascript" src="dwr/interface/QuizGetter.js"></script>
+<style type="text/css">
+<!--
+body{
+    background-image    : url("img/kokuban.jpg");
+    background-bgcolor="#f0f0f0";
+    background-text: centercenter;
+    background-size:1350px;
+    background-repeat: no-repeat;
+    background-position :center center;
+    margin:0;
+    padding:0;
+background-attachment:fixed;
+}
+
+}
+-->
+</style>
+
+</head>
+
+
 <script type="text/javascript">
     //このページに必要なデータ : deadline, list{answerID, answerName, answer}
     //メソッド名候補 : getDeadLine, getAnswerList
     //リバースAjaxについて調べる
     //→この動作に向いてないっぽい？ので普通に秒指定で問い合わせる
     //こういうのを使うらしい→ dwr.engine.setActiveReverseAjax(true);
+
     var currentQuizID = 0;
 	if (window.location.search) {
         currentQuizID = unescape(window.location.search.substring(1, window.location.search.length));
@@ -24,25 +46,26 @@
 	function getGuestAnswersData() {
 		QuizGetter.getGuestAnswersData(currentQuizID, {
 			callback : function(data) {
-				var text = "<table>";
+				var text = "<table border=0 cellspacing=0 cellpadding=5><tr>";
 				var answerNumber = data.length;//, ans0 = 0, ans1 = 0;
 				for (var i = 0; i < data.length; ++i) {
+					text += "<td width=200><table border=2 bordercolor=white cellspacing=2 cellpadding=2>";
 					text += "<tr>";
-					text += "<td>";
-					text += "ID: ";
-					text += data[i].guestID;
-					text += "</td>";
-					text += "<td>";
+					text += "<td width=180 style=color:white><font size=+2>";
 					text += "名前: ";
 					text += data[i].guestName;
 					text += "</td>";
-					text += "<td>";
-					text += "解答: ";
+					text += "</tr>"
+				    text += "<tr>"
+					text += "<td width=180 height=120 style=color:white>";
+					text += "解答: <font style=font-size:75pt>";
 					text += data[i].answer;
-					text += "</td>";
-					text += "</tr>\n";
+					text += "</font></td>";
+					text += "</tr>";
+					text += "</table></td>";
 				}
 				text += "\n</table>";
+				text += "<font color=white size=+2>";
 				if (text == "<table>\n</table>") {
 					text += "<br />まだ解答者がいません。";
 				} else {
@@ -59,6 +82,7 @@
 					text += answerNumber - ans0 - ans1;
 					*/
 				}
+				text += "</font>";
 				$('#area').html(text);
 			}
 		});
@@ -66,13 +90,16 @@
 	getGuestAnswersData();
 	setInterval(getGuestAnswersData, 5000);
 </script>
-</head>
-<body>
-	クイズ期間 <span id="deadline"></span>まで
+<body background="img/kokuban.jpg">
+<center>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+	<font color="white" size="+2">クイズ期間 <span id="deadline"></span>まで</font>
 	<div id="area">
 	</div>
 	<br>
 	<input value="クイズ一覧に戻る" type="button"
 		onclick="window.location.href ='quizlist.html'" />
+		</center>
 </body>
 </html>

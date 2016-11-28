@@ -6,36 +6,36 @@
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/jquery.serialize.js"></script>
 <script type="text/javascript" src="dwr/interface/QuizGetter.js"></script>
-<script type="text/javascript">
-	function quizJoin() {
-		QuizGetter.quizJoin($('#guestName').val(), {
-			callback : function(guestID) {
-				window.location.replace("menu2.html?" + guestID);
-			}
-		});
-	}
-</script>
-</head>
 <style type="text/css">
-.typetext{
-font-size:20pt;
-width:10em;
-height:1.5em;
+
+body{
+    background-image    : url("img/kokuban.jpg");
+    background-bgcolor="#f0f0f0";
+    background-text: centercenter;
+    background-size:1350px;
+    background-repeat: no-repeat;
+    background-position :center center;
+    margin:0;
+    padding:0;
+background-attachment:fixed;
+}
+
 }
 
 </style>
-<body>
+
+</head>
+
+
+<!-- <body background="img/kokuban.jpg" bgcolor="#f0f0f0" text="#000000" link="#0000ff" vlink="#800080" alink="#ff0000";style="background-position:50%;"> -->
 	<p>
 	<center>
-	<font size="5">名前を入力してください: <input type="text" id="guestName" value="ゲスト" /><br />
-<input style="width:200px;height:32px;font-size:25;background-color:#0080ff;color:#000000;border-style:solid;border-color:#0080ff;border-width:2;"type="button" value="クイズに参加"
- onmouseover="this.style.color='red'"onmouseout="this.style.color='black'" onclick="quizJoin()"/>
-	</font>
-	<br />
-	<br />
-	<br />
-	<input style="width:200px;height:32px;font-size:25;background-color:green;color:#000000;border-style:solid;border-color:green;border-width:2;"type="button" value="回答状況をみる"
- onmouseover="this.style.color='red'"onmouseout="this.style.color='black'" onclick="window.location.href ='quizlist.html'"/>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<input style="width:240px;height:60px;font-size:30;background-color:#0080ff;color:white;border-style:solid;border-color:black;border-width:2;"type="button" value="クイズに参加"
+ onmouseover="this.style.color='red'"onmouseout="this.style.color='white'" onclick="window.location.href ='menu2.html'"/>
+ 	<br><br><br><br>
+	<input style="width:240px;height:60px;font-size:30;background-color:orange;color:white;border-style:solid;border-color:black;border-width:2;"type="button" value="回答状況をみる"
+ onmouseover="this.style.color='red'"onmouseout="this.style.color='white'" onclick="window.location.href ='quizlist.html'"/>
 
 </center>
 

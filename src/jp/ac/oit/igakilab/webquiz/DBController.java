@@ -84,6 +84,9 @@ public class DBController {
 				}
 			}
 		}
+
+		System.out.println("reply: " + list.toString());
+
 		return list.toArray(new String[0]);
 	}
 
