@@ -5,7 +5,7 @@ WEB上でできるクイズ
 ◦ c:\pleiades4.5\eclipse, java, tomcat                     
 
 ②Windowsの環境変数設定          
-◦ コンピュータを右クリック->プロパティ(あるいはコントロールパネルの「システム」）->システムの詳細設定->環境変数　　　　　　
+◦ コンピュータを右クリック->プロパティ(あるいはコントロールパネルの「システム」）->システムの詳細設定->環境変数　　　　　　  
 ◦ 環境変数でユーザ/システム環境変数のどちらかに，変数名：JAVA_HOME，変数値：C:\pleiades4.5\java\8 (要はJDKのbinがあるディレクトリの一つ上）を指定する．同じく変数名：JRE_HOME, 変数値：C:\pleiades4.5\java\8\jre (JREのbinがあるディレクトリの一つ上)を指定する      
 
 ③eclipseの設定       
@@ -13,16 +13,17 @@ WEB上でできるクイズ
 ウィンドウ->設定->コンパイラー->コンパイラー準拠レベルを1.8に変更．下の方にインストール済みJREが．．とか警告がでるので，そこでもJRE8を選択する．フルビルドはしてもしなくても良い．     
 
 ④クローンの生成       
-◦ デスクトップからGitHubを開き,左上の＋をクリック->Cloneのタグをクリックし,igakilab/WebQuizのクローンをCloneRepositoryのボタンをクリックし生成する．    
+◦ https://github.com/igakilab/WebQuiz  
+上記のページにあるClone or downloadをクリック->open in desktopをクリック->githubdesktopが開き、クローンを作る場所を選択するページになるので、GitHubのファイルを選択する。    
 
 ⑤ MYSQLのダウンロード   
 http://dev.mysql.com/downloads/mysql/  
 ◦ 上記のリンク先に飛んで,Windows(x86,32-bit),MYSQL Installer MSIをダウンロードする   
 
 ⑥ MYSQLのインポート   
-MYSQLを開き、Serverのimportのボタンからselfcontainedfileに20161103.sqlのファイルを選択し、StartImportをクリックする。   
+MYSQLを開き、初期設定を行う(名前,パスワードは何でもよい)->Serverのimportのボタンをクリック->Importfrom-Self-ContainedFileをクリックする->右端にある...をクリックし、20161103.sqlのファイルを選択する->NEW...をクリックし、testと入力する->StartImportをクリックする。-> ImportCompletedと表示されればOK-> ImportCompletedの後にwitherrorsというコメントが表示されれば、importからやり直す    
 
-⑦プロジェクトの作成  
+⑦プロジェクトの作成  
 ◦ eclipseを起動し,ファイル->インポート->選択画面でGitファイルを開き,Gitからプロジェクトで次へをクリック->既存ローカルリポジトリの中のWebQuizを開き,次へをクリック
 ->次へをクリック->完了をクリックする．
 
