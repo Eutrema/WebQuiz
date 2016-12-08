@@ -14,16 +14,19 @@ WEB上でできるクイズ
 
 ④クローンの生成       
 ◦ https://github.com/igakilab/WebQuiz  
-上記のページにあるClone or downloadをクリック->open in desktopをクリック->githubdesktopが開き、クローンを作る場所を選択するページになるので、GitHubのファイルを選択する。    
+上記のページにあるClone or downloadをクリック->open in desktopをクリック->githubdesktopが開き、クローンを作る場所を選択するページになるので、GitHubのファイルを選択する.    
 
 ⑤ MYSQLのダウンロード   
 http://dev.mysql.com/downloads/mysql/  
 ◦ 上記のリンク先に飛んで,Windows(x86,32-bit),MYSQL Installer MSIをダウンロードする   
 
-⑥ MYSQLのインポート   
-MYSQLを開き、初期設定を行う(名前,パスワードは何でもよい)->Serverのimportのボタンをクリック->Importfrom-Self-ContainedFileをクリックする->右端にある...をクリックし、20161103.sqlのファイルを選択する->NEW...をクリックし、testと入力する->StartImportをクリックする。-> ImportCompletedと表示されればOK-> ImportCompletedの後にwitherrorsというコメントが表示されれば、importからやり直す    
+⑥ MYSQLのインポート   
+◦ MYSQLを開き、初期設定を行う(名前,パスワードは何でもよい)->Serverのimportのボタンをクリック->Importfrom-Self-ContainedFileをクリックする->右端にある...をクリックし、20161103.sqlのファイルを選択する->NEW...をクリックし,testと入力する->StartImportをクリックする.-> ImportCompletedと表示されればOK-> ImportCompletedの後にwitherrorsというコメントが表示されれば,importからやり直す    
 
-⑦プロジェクトの作成  
+⑦ MYSQLの権限付与      
+◦ MYSQLのUsers and Privilegesを選択->下にあるAdd Accountのボタンをクリック->Login Nameにuser Passwordにsmashと入力->上のタグをSchema Privilegesに切り替える->Add Entry...をクリックし,All Schemaにチェックを入れ,OKをクリック->Select "ALL"をクリックする.-> Applyをする.
+
+⑧ プロジェクトの作成       
 ◦ eclipseを起動し,ファイル->インポート->選択画面でGitファイルを開き,Gitからプロジェクトで次へをクリック->既存ローカルリポジトリの中のWebQuizを開き,次へをクリック
 ->次へをクリック->完了をクリックする．
 
