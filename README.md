@@ -21,7 +21,7 @@ http://dev.mysql.com/downloads/mysql/
 ◦ 上記のリンク先に飛んで,Windows(x86,32-bit),MYSQL Installer MSIをダウンロードする   
 
 ⑥ MYSQLのインポート   
-◦ MYSQLを開き、初期設定を行う(名前,パスワードは何でもよい)->Serverのimportのボタンをクリック->Importfrom-Self-ContainedFileをクリックする->右端にある...をクリックし、20161103.sqlのファイルを選択する->NEW...をクリックし,testと入力する->StartImportをクリックする.-> ImportCompletedと表示されればOK-> ImportCompletedの後にwitherrorsというコメントが表示されれば,importからやり直す    
+◦ MYSQLを開き、初期設定を行う(名前,パスワードは何でもよい)->Serverのimportのボタンをクリック->Importfrom-Self-ContainedFileをクリックする->右端にある...をクリックし、20161101.sqlのファイルを選択する->NEW...をクリックし,testと入力する->StartImportをクリックする.-> ImportCompletedと表示されればOK-> ImportCompletedの後にwitherrorsというコメントが表示されれば,importからやり直す    
 
 ⑦ MYSQLの権限付与      
 ◦ MYSQLのUsers and Privilegesを選択->下にあるAdd Accountのボタンをクリック->Login Nameにuser Passwordにsmashと入力->上のタグをSchema Privilegesに切り替える->Add Entry...をクリックし,All Schemaにチェックを入れ,OKをクリック->Select "ALL"をクリックする.-> Applyをする.
