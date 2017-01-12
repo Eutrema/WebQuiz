@@ -16,12 +16,15 @@ WEB上でできるクイズ
 ◦ https://github.com/igakilab/WebQuiz  
 上記のページにあるClone or downloadをクリック->open in desktopをクリック->githubdesktopが開き、クローンを作る場所を選択するページになるので、GitHubのファイルを選択する.    
 
-⑤ MYSQLのダウンロード   
-http://dev.mysql.com/downloads/mysql/  
-◦ 上記のリンク先に飛んで,Windows(x86,32-bit),MYSQL Installer MSIをダウンロードする   
+⑤ MYSQLのダウンロード,インストール
+http://dev.mysql.com/downloads/mysql/  
+◦ 上記のリンク先に飛んで,Windows(x86,32-bit),MYSQL Installer MSIをダウンロードする     
+途中パスワードの設定を求められるがそれまではNextを押す  
+パスワードは自分で覚えられるパスワードなら何でもよい(MYSQL WorkBenchが起動したときに入力しないといけないので覚えておく)  
+その後はNextかExcuteを押し続ける
 
-⑥ MYSQLのインポート   
-◦ MYSQLを開き、初期設定を行う(名前,パスワードは何でもよい)->Serverのimportのボタンをクリック->Importfrom-Self-ContainedFileをクリックする->右端にある...をクリックし、20161101.sqlのファイルを選択する->NEW...をクリックし,testと入力する->StartImportをクリックする.-> ImportCompletedと表示されればOK-> ImportCompletedの後にwitherrorsというコメントが表示されれば,importからやり直す    
+⑥ SQLファイルのインポート     
+◦ MYSQL WorkBenchを開き、初期設定を行う(名前,パスワードは何でもよい)->ServerのData importのボタンをクリック->Importfrom-Self-ContainedFileをクリックする->右端にある...をクリックし、20161101.sqlのファイルを選択する->NEW...をクリックし,testと入力する->StartImportをクリックする.-> ImportCompletedと表示されればOK-> ImportCompletedの後にwitherrorsというコメントが表示されれば,importからやり直す      　
 
 ⑦ MYSQLの権限付与      
 ◦ MYSQLのUsers and Privilegesを選択->下にあるAdd Accountのボタンをクリック->Login Nameにuser Passwordにsmashと入力->上のタグをSchema Privilegesに切り替える->Add Entry...をクリックし,All Schemaにチェックを入れ,OKをクリック->Select "ALL"をクリックする.-> Applyをする.
